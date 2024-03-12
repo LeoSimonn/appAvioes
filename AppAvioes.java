@@ -23,6 +23,9 @@ public class AppAvioes {
                 case 2:
                     consultarAviaoPeloModelo();
                     break;
+                case 9:
+                    alterarModeloAviao();
+                    break;
                 case 0:
                     break;
                 case 99:
@@ -44,8 +47,24 @@ public class AppAvioes {
         System.out.println("Opcoes:");
         System.out.println("[1] Cadastrar um aviao");
         System.out.println("[2] Consultar um aviao pelo modelo");
+        System.out.println("[9] Alterar o modelo de um avião");
         System.out.println("[0] Sair");
         System.out.print("Digite a opcao desejada: ");
+    }
+
+    private void alterarModeloAviao() {
+        System.out.println("ALTERAR MODELO DE UM AVIAO");
+        System.out.print("Digite o modelo do aviao: ");
+        String modelo = entrada.nextLine();
+        Aviao aviao = aeroporto.consultarPorModelo(modelo);
+        if(aviao == null)
+            System.out.println("Nenhum aviao encontrado com este modelo.");
+        else {
+            System.out.print("Digite o novo modelo do aviao: ");
+            String novoModelo = entrada.nextLine();
+            aviao.setModelo(novoModelo);
+            System.out.println("Modelo do aviao alterado!");
+        }
     }
 
     private void cadastrarAviao() {
